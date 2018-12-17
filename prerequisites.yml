@@ -1,0 +1,9 @@
+- hosts: masters workers
+  become: yes
+  tasks:
+#    - name: prerequisites
+ #     shell: swapoff -a && sed -i -e 's/\/dev\/mapper\/centos-swap/#\/dev\/mapper\/centos-swap/g' /etc/fstab
+    - name: Selinux
+      policy: targeted
+      selinux:
+        state: permissive

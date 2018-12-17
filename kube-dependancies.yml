@@ -1,0 +1,33 @@
+- hosts: masters workers
+  become: yes
+  tasks:
+    - name: install EPEL
+      yum:
+        name: epel-release
+        state: installed
+    - name: add Kubernetes repo
+      yum_repository:
+        name: kubernetes
+        description:  Kubernetes repo
+        baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+        gpgcheck: no
+    - name: install Docker
+      yum:
+        name: docker
+        state: present
+    - name: install kubelet
+      yum:
+        name: kubelet
+        state: present
+    - name:
+      yum:
+        name: kubeadm
+        state: present
+- hosts: master
+  become: yes
+  tasks:
+    - name: install kubectl
+      yum:
+        name: kubectl
+        state: present
+      
