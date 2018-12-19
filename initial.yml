@@ -14,3 +14,11 @@
       authorized_key: user=centos key="{{item}}"
       with_file:
         - ~/.ssh/id_rsa.pub
+    
+    - name: Disable Selinux
+      selinux:
+        policy: targeted
+        state: permissive
+    
+    - name: Turn off SWAP
+      shell: swapoff -a || /bin/true

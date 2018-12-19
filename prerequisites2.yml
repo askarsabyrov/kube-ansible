@@ -1,9 +1,0 @@
-- hosts: masters workers
-  become: yes
-  tasks:
-    - name: Disable Selinux
-      selinux:
-        policy: targeted
-        state: permissive
-    - name: Turn off SWAP
-      shell: swapoff -a
